@@ -10,9 +10,9 @@ def conectar():
     caminho_banco = os.path.join(diretorio_atual, 'voluntarios.db')
     return sqlite3.connect(caminho_banco)
 
-# ==========================================
+
 # 1. READ (Lê todos os voluntários na tela inicial)
-# ==========================================
+
 @app.route('/')
 def index():
     conn = conectar()
@@ -22,9 +22,9 @@ def index():
     conn.close()
     return render_template('index.html', lista_voluntarios=dados)
 
-# ==========================================
+
 # 2. CREATE (Cadastra um novo voluntário)
-# ==========================================
+
 @app.route('/cadastrar', methods=['GET', 'POST'])
 def cadastrar():
     if request.method == 'POST':
@@ -53,9 +53,9 @@ def cadastrar():
     # Se for GET, só mostra o formulário vazio
     return render_template('cadastro.html')
 
-# ==========================================
+
 # 3. UPDATE (Atualiza os dados de um voluntário)
-# ==========================================
+
 @app.route('/editar/<int:id_voluntario>', methods=['GET', 'POST'])
 def editar(id_voluntario):
     conn = conectar()
@@ -85,9 +85,9 @@ def editar(id_voluntario):
 
     return render_template('editar.html', voluntario=voluntario_atual)
 
-# ==========================================
+
 # 4. DELETE (Remove um voluntário)
-# ==========================================
+
 @app.route('/deletar/<int:id_voluntario>')
 def deletar(id_voluntario):
     conn = conectar()
